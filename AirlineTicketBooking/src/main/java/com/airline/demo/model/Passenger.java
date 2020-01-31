@@ -17,7 +17,7 @@ public class Passenger {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "passenger_id")
-	public int passenger_id;
+	public long passenger_id;
 
 	@Column(name = "passernger_first_name")
 	public String passernger_first_name;
@@ -38,11 +38,11 @@ public class Passenger {
 	@JoinColumn(name = "ticket_id", foreignKey = @ForeignKey(name = "ticket_id_fk"))
 	public Ticket ticket;
 
-	public int getPassenger_id() {
+	public long getPassenger_id() {
 		return passenger_id;
 	}
 
-	public void setPassenger_id(int passenger_id) {
+	public void setPassenger_id(Long passenger_id) {
 		this.passenger_id = passenger_id;
 	}
 
@@ -98,7 +98,7 @@ public class Passenger {
 		super();
 	}
 
-	public Passenger(int passenger_id, String passernger_first_name, String passernger_last_name, int passernger_age,
+	public Passenger(Long passenger_id, String passernger_first_name, String passernger_last_name, int passernger_age,
 			String passernger_gender, int passernger_seat_number, Ticket ticket) {
 		super();
 		this.passenger_id = passenger_id;

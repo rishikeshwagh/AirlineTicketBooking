@@ -2,9 +2,7 @@ package com.airline.demo.controllers;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.Flight;
 import com.airline.demo.service.FlightService;
@@ -51,12 +48,23 @@ public class FlightController {
 	@PutMapping("/updateflight/{flight_id}")
 	public ResponseEntity<Flight> updateFlight(@PathVariable(value = "flight_id") Long flight_id,
 			@Valid @RequestBody Flight newflight) throws ResourceNotFoundException {
-
 		return flightService.updateFlight(flight_id, newflight);
 	}
 
 	@GetMapping("/flightfromlocation/{from_location}")
-	public List<Flight> getFlightByFromLocation(@PathVariable(value ="from_location") String from_location) throws ResourceNotFoundException {
+	public List<Flight> getFlightByFromLocation(@PathVariable(value = "from_location") String from_location)
+			throws ResourceNotFoundException {
 		return flightService.getFlightByFromLocation(from_location);
+	}
+
+	@GetMapping("/flighttolocation/{to_location}")
+	public List<Flight> getFlightToLocation(@PathVariable(value = "to_location") String to_location)
+			throws ResourceNotFoundException {
+		return flightService.getFlightToLocation(to_location);
+	}
+
+	@PostMapping("/searchflightfromandtolocation")
+	public List<Flight> getFlightFromAndToLocation(@Valid @RequestBody Flight flight) throws ResourceNotFoundException {
+		return flightService.getFlightFromAndToLocation(flight.getFrom_location(), flight.getTo_location());
 	}
 }

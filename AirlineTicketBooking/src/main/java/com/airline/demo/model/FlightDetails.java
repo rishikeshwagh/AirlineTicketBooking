@@ -26,7 +26,7 @@ public class FlightDetails {
 	public Date flight_departure_date;
 
 	@Column(name = "price")
-	public long price;
+	public int price;
 
 	@Column(name = "available_seats")
 	public int available_seats;
@@ -55,7 +55,7 @@ public class FlightDetails {
 		return price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -79,7 +79,7 @@ public class FlightDetails {
 		super();
 	}
 
-	public FlightDetails(int flight_details_id, Date flight_departure_date, long price, int available_seats,
+	public FlightDetails(Long flight_details_id, Date flight_departure_date, int price, int available_seats,
 			Flight flight) {
 		super();
 		this.flight_details_id = flight_details_id;

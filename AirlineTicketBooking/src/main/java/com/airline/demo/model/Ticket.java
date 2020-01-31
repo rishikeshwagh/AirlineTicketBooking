@@ -17,7 +17,7 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ticket_id")
-	public int ticket_id;
+	public long ticket_id;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "user_id_fk"))
@@ -30,11 +30,11 @@ public class Ticket {
 	@Column(name = "ticket_status")
 	public String ticket_status;
 
-	public int getTicket_id() {
+	public long getTicket_id() {
 		return ticket_id;
 	}
 
-	public void setTicket_id(int ticket_id) {
+	public void setTicket_id(long ticket_id) {
 		this.ticket_id = ticket_id;
 	}
 
@@ -66,7 +66,7 @@ public class Ticket {
 		super();
 	}
 
-	public Ticket(int ticket_id, UserProfile userProfile, FlightDetails flightDetails, String ticket_status) {
+	public Ticket(long ticket_id, UserProfile userProfile, FlightDetails flightDetails, String ticket_status) {
 		super();
 		this.ticket_id = ticket_id;
 		this.userProfile = userProfile;

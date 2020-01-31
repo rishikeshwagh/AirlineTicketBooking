@@ -95,7 +95,7 @@ public class UserProfile {
 		super();
 	}
 
-	public UserProfile(int user_id, String password, String user_first_name, String user_last_name, String user_address,
+	public UserProfile(Long user_id, String password, String user_first_name, String user_last_name, String user_address,
 			long user_mobile_number, String user_email_id) {
 		super();
 		this.user_id = user_id;

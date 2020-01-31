@@ -107,7 +107,7 @@ public class Flight {
 		super();
 	}
 
-	public Flight(int flight_id, int airline_id, String airline_name, String from_location, String to_location,
+	public Flight(Long flight_id, int airline_id, String airline_name, String from_location, String to_location,
 			Time departure_time, Time arrival_time, int total_seats) {
 		super();
 		this.flight_id = flight_id;

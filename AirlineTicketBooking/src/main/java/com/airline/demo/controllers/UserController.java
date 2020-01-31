@@ -33,7 +33,6 @@ public class UserController {
 
 	@GetMapping("/viewallusers")
 	public List<UserProfile> getAllUsers() {
-
 		return userService.getAllUsers();
 	}
 

@@ -63,4 +63,12 @@ public class FlightService {
 		List<Flight> flight = flightRepository.findByFromLocation(from_location);
 		return flight;
 	}
+	public List<Flight> getFlightToLocation(String to_location) throws ResourceNotFoundException {
+		List<Flight> flight = flightRepository.findToLocation(to_location);
+		return flight;
+	}
+	public List<Flight> getFlightFromAndToLocation(String from_location,String to_location) throws ResourceNotFoundException {
+		List<Flight> flight = flightRepository.findFromAndToLocation(from_location, to_location);
+		return flight;
+	}
 }
