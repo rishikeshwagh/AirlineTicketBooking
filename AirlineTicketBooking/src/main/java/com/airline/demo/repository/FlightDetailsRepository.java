@@ -15,8 +15,9 @@ public interface FlightDetailsRepository extends JpaRepository<FlightDetails, Lo
 	@Query(value = "select * from flight_details where flight_id=(:flight_id) and flight_departure_date =(:flight_departure_date)", nativeQuery = true)
 	FlightDetails findByIdAndFlightDepartureDate(@Param("flight_id") Long flight_id,
 			@Param("flight_departure_date") Date flight_departure_date);
+	
+	@Query(value = "select * from flight_details where flight_details_id = (:flight_details_id)", nativeQuery = true)
+	FlightDetails findByFlightDetailsId(@Param("flight_details_id") long flight_details_id);
 
-//	@Query(value = "select f from flight_details f where flight_id=?1 and flight_departure_date =?2", nativeQuery = true)
-//	FlightDetails findByIdAndFlightDepartureDate(Long flight_id, Date flight_departure_date);
 
 }
