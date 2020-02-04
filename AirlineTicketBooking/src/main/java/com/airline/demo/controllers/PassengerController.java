@@ -1,12 +1,10 @@
 package com.airline.demo.controllers;
 
-import java.sql.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.Passenger;
@@ -19,14 +17,20 @@ public class PassengerController {
 	PassengerService passengerService;
 
 	@PostMapping("/viewallpassengersbyticketid/{ticket_id}")
-	public ResponseEntity<List<Passenger>> getAllPassengersByTicketId(@RequestParam long ticket_id)
+	public ResponseEntity<List<Passenger>> getAllPassengersByTicketId(@PathVariable(value = "ticket_id") Long ticket_id)
 			throws ResourceNotFoundException {
 		return passengerService.getAllPassengersByTicketId(ticket_id);
 	}
 
-	@PostMapping("/viewallpassengersbyflightidanddeparturedate")
-	public ResponseEntity<List<Passenger>> getAllPassengersByFlightIdAndDepartureDate(@RequestBody long flight_id,
-			@RequestBody Date flight_departure_date) throws ResourceNotFoundException {
-		return passengerService.getAllPassengersByFlightIdAndDepartureDate(flight_id, flight_departure_date);
+	@PostMapping("/viewallpassengersbyflightidanddeparturedate/{flight_details_id}")
+	public ResponseEntity<List<Passenger>> getAllPassengersByFlightIdAndDepartureDate(
+			@PathVariable(value = "flight_details_id") Long flight_details_id) throws ResourceNotFoundException {
+		return passengerService.getAllPassengersByFlightIdAndDepartureDate(flight_details_id);
+	}
+
+	@PostMapping("/viewallbookedseatsbyflightidanddeparturedate/{flight_details_id}")
+	public ResponseEntity<List<Integer>> getAllBookedSeatsByFlightIdAndDepartureDate(
+			@PathVariable(value = "flight_details_id") Long flight_details_id) throws ResourceNotFoundException {
+		return passengerService.getAllBookedSeatsByFlightIdAndDepartureDate(flight_details_id);
 	}
 }

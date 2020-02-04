@@ -21,7 +21,7 @@ public class FlightController {
 
 	@Autowired
 	public FlightService flightService;
-	
+
 	@Autowired
 	public TicketController ticketController;
 
@@ -57,10 +57,6 @@ public class FlightController {
 	@GetMapping("/flightfromlocation/{from_location}")
 	public List<Flight> getFlightByFromLocation(@PathVariable(value = "from_location") String from_location)
 			throws ResourceNotFoundException {
-//		{
-////			TicketController ticketController = new TicketController();
-//			ticketController.RISHITICKET();
-//		}
 		return flightService.getFlightByFromLocation(from_location);
 	}
 

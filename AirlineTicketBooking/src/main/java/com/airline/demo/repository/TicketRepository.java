@@ -11,8 +11,7 @@ import com.airline.demo.model.Ticket;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
-
-
 	@Query(value = "select * from ticket where flight_details_id = (:flight_details_id)", nativeQuery = true)
 	List<Ticket> findAllByFlightDetailsId(@Param("flight_details_id") Long flight_details_id);
+	
 }

@@ -2,8 +2,10 @@ package com.airline.demo.service;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.airline.demo.dto.TicketInfoDTO;
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.FlightDetails;
@@ -40,11 +42,15 @@ public class TicketService {
 		long user_id = ticketInfoDTO.getUser_id();
 		long flight_details_id = ticketInfoDTO.getFlight_details_id();
 		List<Passenger> passengerslist = ticketInfoDTO.getPassengerslist();
-		
+
 		if (passengerslist == null) {
-			throw new ResourceNotFoundException("No Passengers Added: ADD Passengers First");
+			throw new ResourceNotFoundException("NO PASSENGERS ADDED: ADD PASSENGERS FIRST");
 		}
-		
+		if (passengerslist.size() > 5) {
+			{
+				throw new ResourceNotFoundException("ONE USER IS NOT ALLOWED TO ADD MORE THAN 5 PASSENGERS");
+			}
+		}
 		UserProfile userProfile = userRepository.findByUserId(user_id);
 		FlightDetails flightDetails = flightDetailsRepository.findByFlightDetailsId(flight_details_id);
 
@@ -62,6 +68,11 @@ public class TicketService {
 
 		passengerRepository.saveAll(passengerslist);
 		ticket.setTicket_status("BOOKED");
+		
+		int available_seats = ticket.flightDetails.getAvailable_seats() -passengerslist.size();
+		ticket.flightDetails.setAvailable_seats(available_seats);
+		
+	
 		ticketRepository.save(ticket);
 		List<Passenger> bookedpassengerslist = passengerRepository.findAllByTicketId(ticket.getTicket_id());
 
@@ -69,4 +80,6 @@ public class TicketService {
 
 	}
 
-}
+	
+	}
+

@@ -2,11 +2,12 @@ package com.airline.demo.controllers;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,15 +29,15 @@ public class TicketController {
 
 	}
 
-	@GetMapping("/viewticketbyid")
-	public Optional<Ticket> getTicketById(@RequestParam long ticket_id) {
+	@GetMapping("/viewticketbyid/{ticket_id}")
+	public Optional<Ticket> getTicketById(@PathVariable Long ticket_id) {
 		return ticketService.getTicketById(ticket_id);
 
 	}
 
 	@PostMapping("/generateticket")
-	public @ResponseBody List<Passenger> generateTicket(@RequestBody TicketInfoDTO ticketInfoDTO) throws ResourceNotFoundException {
-		System.out.println("generateticket");
+	public @ResponseBody List<Passenger> generateTicket(@RequestBody TicketInfoDTO ticketInfoDTO)
+			throws ResourceNotFoundException {
 		return ticketService.generateTicket(ticketInfoDTO);
 
 	}

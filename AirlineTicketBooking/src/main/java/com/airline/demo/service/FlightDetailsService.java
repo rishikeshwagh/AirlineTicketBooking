@@ -1,6 +1,7 @@
 package com.airline.demo.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -19,41 +20,15 @@ public class FlightDetailsService {
 	@Autowired
 	FlightDetailsRepository flightDetailsRepository;
 
-//	public ResponseEntity<FlightDetails> updateFlightPrice(@Valid FlightDetails newflightdetails)
-//			throws ResourceNotFoundException {
-//		Long myflight_id = newflightdetails.getFlight().getFlight_id();
-//		Date mydate = newflightdetails.getFlight_departure_date();
-//
-//		FlightDetails flightdetails = flightDetailsRepository.findByIdAndFlightDepartureDate(myflight_id, mydate);
-//
-//		if (flightdetails == null) {
-//
-//			new ResourceNotFoundException(
-//					"Flight Details not found for this flight_id :: " + newflightdetails.getFlight_details_id());
-//
-//		}
-//
-//		flightdetails.setPrice(newflightdetails.getPrice());
-////		flightdetails.setFlight_departure_date(newflightdetails.getFlight_departure_date());
-//
-//		final FlightDetails updatedflightdetails = flightDetailsRepository.save(flightdetails);
-//		return ResponseEntity.ok(updatedflightdetails);
-//	}
-
-	public ResponseEntity<FlightDetails> updateFlightPrice(Long flight_id, Date flight_departure_date, int price)
+	public ResponseEntity<FlightDetails> updateFlightPrice(FlightDetails newflightDetails)
 			throws ResourceNotFoundException {
+		FlightDetails oldflightdetails = new FlightDetails();
+		Long flight_details_id = newflightDetails.getFlight_details_id();
+		oldflightdetails = flightDetailsRepository.findByFlightDetailsId(flight_details_id);
 
-		FlightDetails flightdetails = flightDetailsRepository.findByIdAndFlightDepartureDate(flight_id,
-				flight_departure_date);
+		oldflightdetails.setPrice(newflightDetails.getPrice());
 
-		if (flightdetails == null) {
-
-			new ResourceNotFoundException("Flight Details not found for this flight_id :: " + flight_id);
-
-		}
-		flightdetails.setPrice(price);
-
-		final FlightDetails updatedflightdetails = flightDetailsRepository.save(flightdetails);
+		final FlightDetails updatedflightdetails = flightDetailsRepository.save(oldflightdetails);
 		return ResponseEntity.ok(updatedflightdetails);
 	}
 
@@ -101,6 +76,11 @@ public class FlightDetailsService {
 	public FlightDetails fillFlightDetails(@Valid FlightDetails flightDetails) {
 
 		return flightDetailsRepository.save(flightDetails);
-		
+
+	}
+
+	public List<Integer> getAllAvailableSeats(Long flight_details_id) {
+
+		return flightDetailsRepository.findAllAvailableSeats(flight_details_id);
 	}
 }

@@ -51,7 +51,7 @@ public class FlightDetails {
 		this.flight_departure_date = flight_departure_date;
 	}
 
-	public long getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
