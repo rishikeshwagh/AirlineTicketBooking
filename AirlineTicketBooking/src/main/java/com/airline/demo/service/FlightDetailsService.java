@@ -10,6 +10,7 @@ import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.FlightDetails;
 
 public interface FlightDetailsService {
+	
 	ResponseEntity<FlightDetails> updateFlightPrice(FlightDetails newflightDetails) throws ResourceNotFoundException;
 
 	ResponseEntity<FlightDetails> updateAvailableSeats(@Valid FlightDetails newflightdetails)
