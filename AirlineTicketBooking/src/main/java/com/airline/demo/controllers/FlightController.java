@@ -2,7 +2,9 @@ package com.airline.demo.controllers;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.Flight;
 import com.airline.demo.service.FlightService;
@@ -21,9 +24,6 @@ public class FlightController {
 
 	@Autowired
 	public FlightService flightService;
-
-	@Autowired
-	public TicketController ticketController;
 
 	@GetMapping("/flights")
 	public List<Flight> getAllFlights() {
@@ -70,4 +70,5 @@ public class FlightController {
 	public List<Flight> getFlightFromAndToLocation(@Valid @RequestBody Flight flight) throws ResourceNotFoundException {
 		return flightService.getFlightFromAndToLocation(flight.getFrom_location(), flight.getTo_location());
 	}
+
 }

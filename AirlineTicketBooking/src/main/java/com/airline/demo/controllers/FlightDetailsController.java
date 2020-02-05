@@ -16,6 +16,7 @@ import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.FlightDetails;
 import com.airline.demo.service.FlightDetailsService;
 
+
 @RestController
 public class FlightDetailsController {
 
@@ -23,7 +24,8 @@ public class FlightDetailsController {
 	FlightDetailsService flightDetailsService;
 
 	@PutMapping("/updateflightprice")
-	public ResponseEntity<FlightDetails> updateFlightPrice(@RequestBody FlightDetails flightDetails) throws ResourceNotFoundException {
+	public ResponseEntity<FlightDetails> updateFlightPrice(@RequestBody FlightDetails flightDetails)
+			throws ResourceNotFoundException {
 		return flightDetailsService.updateFlightPrice(flightDetails);
 	}
 
@@ -48,5 +50,11 @@ public class FlightDetailsController {
 	@PostMapping("/getallavailableseats/{flight_details_id}")
 	public List<Integer> getAllAvailableSeats(@PathVariable Long flight_details_id) throws ResourceNotFoundException {
 		return flightDetailsService.getAllAvailableSeats(flight_details_id);
+	}
+
+	@PostMapping("/searchcheaperflightsfromandtolocation")
+	public List<FlightDetails> getCheaperFlightsFromAndToLocation(@Valid @RequestBody FlightDetails flightdetails)
+			throws ResourceNotFoundException {
+		return flightDetailsService.getCheaperFlightsFromAndToLocation(flightdetails);
 	}
 }

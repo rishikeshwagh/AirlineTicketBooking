@@ -1,11 +1,13 @@
 package com.airline.demo.controllers;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.Passenger;
 import com.airline.demo.service.PassengerService;

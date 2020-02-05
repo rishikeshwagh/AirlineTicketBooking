@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.airline.demo.dto.TicketInfoDTO;
+import com.airline.demo.dto.TicketInfoRequest;
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.Passenger;
 import com.airline.demo.model.Ticket;
@@ -36,9 +36,9 @@ public class TicketController {
 	}
 
 	@PostMapping("/generateticket")
-	public @ResponseBody List<Passenger> generateTicket(@RequestBody TicketInfoDTO ticketInfoDTO)
+	public @ResponseBody List<Passenger> generateTicket(@RequestBody TicketInfoRequest ticketInfoRequest)
 			throws ResourceNotFoundException {
-		return ticketService.generateTicket(ticketInfoDTO);
+		return ticketService.generateTicket(ticketInfoRequest);
 
 	}
 
