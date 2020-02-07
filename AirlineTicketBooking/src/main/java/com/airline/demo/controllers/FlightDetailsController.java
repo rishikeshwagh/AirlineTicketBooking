@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.FlightDetails;
 import com.airline.demo.service.FlightDetailsService;
 
-
+@RequestMapping("/airlineticketbooking")
 @RestController
 public class FlightDetailsController {
 
