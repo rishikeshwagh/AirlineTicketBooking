@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.airline.demo.dto.SearchDTO;
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.FlightDetails;
 import com.airline.demo.service.FlightDetailsService;
@@ -54,8 +55,10 @@ public class FlightDetailsController {
 	}
 
 	@PostMapping("/searchcheaperflightsfromandtolocation")
-	public List<FlightDetails> getCheaperFlightsFromAndToLocation(@Valid @RequestBody FlightDetails flightdetails)
+	public List<FlightDetails> getCheaperFlightsFromAndToLocation(@Valid @RequestBody SearchDTO searchDTO)
 			throws ResourceNotFoundException {
-		return flightDetailsService.getCheaperFlightsFromAndToLocation(flightdetails);
+		return flightDetailsService.getCheaperFlightsFromAndToLocation(searchDTO);
 	}
+	
+	
 }

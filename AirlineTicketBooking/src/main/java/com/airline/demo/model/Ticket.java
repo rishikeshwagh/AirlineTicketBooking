@@ -20,11 +20,11 @@ public class Ticket {
 	public long ticket_id;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "user_id_fk"))
+	@JoinColumn(name = "user_id", nullable =false,foreignKey = @ForeignKey(name = "user_id_fk"))
 	public UserProfile userProfile;
 
 	@ManyToOne
-	@JoinColumn(name = "flight_details_id", foreignKey = @ForeignKey(name = "flight_details_id_fk"))
+	@JoinColumn(name = "flight_details_id", nullable =false,foreignKey = @ForeignKey(name = "flight_details_id_fk"))
 	public FlightDetails flightDetails;
 
 	@Column(name = "ticket_status")

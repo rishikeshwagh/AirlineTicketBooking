@@ -32,7 +32,8 @@ public class FlightDetails {
 	public int available_seats;
 
 	@ManyToOne
-	@JoinColumn(name = "flight_id", foreignKey = @ForeignKey(name = "flight_id_fk"))
+	@JoinColumn(name = "flight_id", nullable =false,foreignKey = @ForeignKey(name = "flight_id_fk"))
+	
 	public Flight flight;
 
 	public long getFlight_details_id() {

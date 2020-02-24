@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.UserProfile;
 import com.airline.demo.service.UserService;
+
 @RequestMapping("/airlineticketbooking")
 @RestController
 public class UserController {
@@ -37,7 +38,7 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 
-	@GetMapping("/viewuser/{user_id}")
+	@GetMapping("/viewuserbyuserid/{user_id}")
 	public ResponseEntity<UserProfile> getUserByUserId(@PathVariable(value = "user_id") Long user_id)
 			throws ResourceNotFoundException {
 

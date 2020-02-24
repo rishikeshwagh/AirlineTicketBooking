@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.airline.demo.dto.SearchDTO;
 import com.airline.demo.exception.ResourceNotFoundException;
 import com.airline.demo.model.Flight;
 import com.airline.demo.model.FlightDetails;
@@ -89,20 +90,21 @@ public class FlightDetailsServiceImpl implements FlightDetailsService {
 		return flightDetailsRepository.findAllAvailableSeats(flight_details_id);
 	}
 
-	public List<FlightDetails> getCheaperFlightsFromAndToLocation(@Valid FlightDetails flightdetails)
+	public List<FlightDetails> getCheaperFlightsFromAndToLocation(@Valid SearchDTO searchDTO)
 			throws ResourceNotFoundException {
 		List<FlightDetails> flightdetailslist = new ArrayList<FlightDetails>();
 
-		String to_location = flightdetails.getFlight().getTo_location();
-		Date flight_departure_date = flightdetails.getFlight_departure_date();
-		String from_location = flightdetails.getFlight().getFrom_location();
+		String to_location = searchDTO.getTo_location();
+		Date flight_departure_date = searchDTO.getFlight_departure_date();
+		String from_location = searchDTO.getFrom_location();
 		List<Flight> flights = flightService.getFlightFromAndToLocation(from_location, to_location);
 
 		for (int i = 0; i < flights.size(); i++) {
 			FlightDetails flightDetails = new FlightDetails();
 			flightDetails = flightDetailsRepository.findflightDetailsByFlightId(flights.get(i).getFlight_id(),
 					flight_departure_date);
-			flightdetailslist.add(flightDetails);
+			if(flightDetails!=null) {
+			flightdetailslist.add(flightDetails);}
 		}
 		Collections.sort(flightdetailslist, new Comparator<FlightDetails>() {
 			public int compare(FlightDetails flightdetailslist1, FlightDetails flightdetailslist2) {
@@ -112,4 +114,6 @@ public class FlightDetailsServiceImpl implements FlightDetailsService {
 		});
 		return flightdetailslist;
 	}
+
+	
 }

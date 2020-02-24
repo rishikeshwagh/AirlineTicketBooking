@@ -35,7 +35,7 @@ public class Passenger {
 	public int passernger_seat_number;
 
 	@ManyToOne
-	@JoinColumn(name = "ticket_id", foreignKey = @ForeignKey(name = "ticket_id_fk"))
+	@JoinColumn(name = "ticket_id", nullable =false,foreignKey = @ForeignKey(name = "ticket_id_fk"))
 	public Ticket ticket;
 
 	public long getPassenger_id() {
